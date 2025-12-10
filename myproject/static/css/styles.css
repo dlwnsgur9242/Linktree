@@ -89,13 +89,14 @@ body {
   position: relative;
   width: 72px;
   height: 72px;
-  padding: 2px; /* 링 두께 */
+  padding: 3px; /* 링 두께 */
   border-radius: var(--radius-full); /* 완전 동그라미 */
   background: conic-gradient(
-    from 140deg,
-    rgba(249, 115, 22, 0.1),
-    rgba(22, 249, 52, 0.7),
-    rgba(249, 115, 22, 0.1)
+    #ff9c55,
+    #ff5a5f,
+    #ff2e73,
+    #d6249f,
+    #ff9c55
   );
   display: flex;
   align-items: center;
