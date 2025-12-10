@@ -89,50 +89,43 @@ body {
   position: relative;
   width: 72px;
   height: 72px;
-  border-radius: var(--radius-full);
-  padding: 2px;
+  padding: 2px; /* 링 두께 */
+  border-radius: var(--radius-full); /* 완전 동그라미 */
   background: conic-gradient(
     from 140deg,
     rgba(249, 115, 22, 0.1),
-    rgba(249, 115, 22, 0.7),
+    rgba(22, 249, 52, 0.7),
     rgba(249, 115, 22, 0.1)
   );
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  /* ❌ overflow: hidden; 는 제거 → 링까지 같이 잘려버렸음 */
 }
 
-
-.avatar-wrap {
-  position: relative;
-  width: 72px;
-  height: 72px;
-  border-radius: var(--radius-full);
-  padding: 2px;
-  background: conic-gradient(
-    from 140deg,
-    rgba(249, 115, 22, 0.1),
-    rgba(249, 115, 22, 0.7),
-    rgba(249, 115, 22, 0.1)
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
+/* 안쪽 동그라미(사진 들어가는 부분) */
 .avatar-inner {
   width: 100%;
   height: 100%;
-  border-radius: var(--radius-full);
-  background: radial-gradient(circle at 30% 0%, #f97316, #020617);
+  border-radius: inherit; /* 바깥이랑 동일하게 */
+  overflow: hidden;       /* 여기서 사진을 원 안에 자르기 */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: #fefce8;
+  background: #020617;    /* 혹시 이미지 안 보일 때용 배경 (원하면 지워도 됨) */
+  /* 🔥 radial-gradient는 제거: 사진이랑 겹쳐서 애매해짐 */
 }
+
+/* 사진 스타일 */
+.avatar-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* 비율 유지하면서 꽉 채우기 */
+  object-position: center;
+  display: block;
+}
+
 
 .header-text {
   flex: 1;
