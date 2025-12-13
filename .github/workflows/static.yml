@@ -31,19 +31,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Build dist
+      - name: Build disk
         run: |
-          rm -rf dist
-          mkdir dist
-          cp myproject/template/index.html dist/index.html
-          cp -r myproject/static dist/static
-          ls -R dist
+          rm -rf disk
+          mkdir disk
+          cp myproject/template/index.html disk/index.html
+          cp -r myproject/static disk/static
+          ls -R disk
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: disk
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
