@@ -36,7 +36,7 @@ jobs:
           rm -rf disk
           mkdir disk
           cp myproject/template/index.html disk/index.html
-          cp -r myproject/static disk/static
+          cp -r myproject/static/* disk/static
           ls -R disk
       - name: Setup Pages
         uses: actions/configure-pages@v5
