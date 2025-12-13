@@ -1,2 +1,13 @@
 # 가상머신 / 가상환경 폴더
 venv/
+node_modules/
+
+# server.json
+server.js
+
+# 일단 대기
+package-lock.json
+package.json
+
+# DB
+visits.db

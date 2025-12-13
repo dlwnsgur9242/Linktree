@@ -55,7 +55,7 @@
 
     <!-- 📌 Instagram · Main (본계정) -->
     <a class="link-item"
-      href="https://instagram.com/your_main_instagram"
+      href="https://instagram.com/daram.heyday"
       target="_blank"
       rel="noopener noreferrer">
       <div class="link-main">
@@ -110,4 +110,54 @@
   </main>
 
 </body>
+
+<script>
+  (function () {
+    const VISITOR_KEY = "visitor_id";
+
+    // UUID 생성
+    function generateUUID() {
+      return crypto.randomUUID();
+    }
+
+    // Visitor ID 가져오기 or 생성
+    function getVisitorId() {
+      let visitorId = localStorage.getItem(VISITOR_KEY);
+
+      if (!visitorId) {
+        visitorId = generateUUID();
+        localStorage.setItem(VISITOR_KEY, visitorId);
+
+        // 쿠키에도 백업 저장 (7일)
+        document.cookie = `visitor_id=${visitorId}; max-age=${60 * 60 * 24 * 7}; path=/`;
+      }
+
+      return visitorId;
+    }
+
+    const visitorId = getVisitorId();
+
+    const payload = {
+      visitor_id: visitorId,
+      page_url: location.href,
+      referrer: document.referrer || null,
+      user_agent: navigator.userAgent,
+      language: navigator.language,
+      screen: `${screen.width}x${screen.height}`,
+      visited_at: new Date().toISOString()
+    };
+
+    // 서버로 전송
+    fetch("https://your-domain.com/api/visit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    }).catch(err => {
+      console.error("Tracking error:", err);
+    });
+  })();
+</script>
+
 </html>
