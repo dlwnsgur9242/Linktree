@@ -34,20 +34,23 @@ jobs:
       - name: Build dist
         run: |
           rm -rf dist
-          mkdir -p dist
+          mkdir dist
 
-          # template의 index.html을 dist 루트로
+          # HTML
           cp myproject/template/index.html dist/index.html
 
-          # static 폴더를 dist/static 으로
+          # static 전체 복사
           cp -r myproject/static dist/static
+
+          echo "=== dist 구조 ==="
+          ls -R dist
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: disk
+          path: ./disk
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
